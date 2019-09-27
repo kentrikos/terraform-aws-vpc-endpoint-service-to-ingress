@@ -9,7 +9,7 @@ data "external" "k8s_nlb" {
 }
 
 data "aws_lb" "nlb_ingress" {
-  name = data.external.k8s_nlb.result["hostname"]
+  name = split("-", data.external.k8s_nlb.result["hostname"])[0]
 }
 
 # VPC Endpoint Service:
