@@ -18,5 +18,4 @@ HOSTNAME=`kubectl get -n  ${NAMESPACE}  services -l app=${APP} -o jsonpath="{.it
 # Safely produce a JSON object containing the result value.
 # jq will ensure that the value is properly quoted
 # and escaped to produce a valid JSON string.
-jq -n --arg hostname "$HOSTNAME" '{"hostname":$HOSTNAME}'
-
+jq -n --arg hostname "$HOSTNAME" '{"hostname":$hostname}'
