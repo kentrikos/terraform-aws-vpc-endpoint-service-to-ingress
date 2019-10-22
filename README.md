@@ -7,20 +7,15 @@ Terraform version  `>= 0.12`
 
 ## Preparations
 
-* Deploy Kubernetes cluster with ingress service exposed via NodePort (__not__ LoadBalancer with K8s-managed LB).
+* Deploy Kubernetes cluster with ingress service exposed via LoadBalancer with K8s-managed NLB.
 
 ## Usage
 
 ```hcl
 module "vpc-endpoint-services-nlb" {
-  source = "github.com/kentrikos/terraform-aws-k8s-ingress-proxy-vpc-endpoint-service.git"
+  source = "github.com/kentrikos/terraform-aws-vpc-endpoint-service-to-ingress.git"
 
   vpc_id      = "${var.nlb_vpc}"
-  nlb_name    = "${var.nlb_name}"
-  nlb_subnets = "${var.nlb_subnets}"
-
-  k8s_ingress_service_nodeport = "${var.k8s_ingress_service_nodeport}"
-  k8s_workers_asg_names        = "${var.k8s_workers_asg_names}"
 
   vpces_acceptance_required = "${var.vpces_acceptance_required}"
   vpces_allowed_principals  = "${var.vpces_allowed_principals}"
@@ -34,14 +29,10 @@ module "vpc-endpoint-services-nlb" {
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | `common_tag` | Tags to be assigned to each resource (that supports tagging) created by this module | map(string) | n/a |  yes |
-| `k8s_ingress_service_nodeport` | NodePort of ingress service | n/a | n/a |  yes |
-| `k8s_workers_asg_names` | Names of the autoscaling groups containing workers | list(string) | n/a |  yes |
-| `nlb_listener_port` | Port for the listener of NLB | n/a | n/a |  yes |
-| `nlb_name` | The name of the LB. | n/a | n/a |  yes |
-| `nlb_subnets` | A list of subnet IDs to attach to the LB | list(string) | n/a |  yes |
 | `vpc_id` | The identifier of the VPC for NLB and K8s instances | n/a | n/a |  yes |
-| `vpces_acceptance_required` | Whether or not VPC endpoint connection requests to the service must be accepted by the service owner | n/a | `"true"` |  no |
+| `vpces_acceptance_required` | Whether or not VPC endpoint connection requests to the service must be accepted by the service owner | n/a | `"false"` |  no |
 | `vpces_allowed_principals` | The ARNs of one or more principals allowed to discover the endpoint service | list(string) | n/a |  yes |
+
 
 ## Outputs
 

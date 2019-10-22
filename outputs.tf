@@ -7,8 +7,3 @@ output "vpces_base_endpoint_dns_names" {
   description = "The DNS names for the VPC endpoint service"
   value       = aws_vpc_endpoint_service.k8s_ingress.base_endpoint_dns_names
 }
-
-output "vpces_base_endpoint_dns_names2" {
-  description = "The DNS names for the VPC endpoint service"
-  value       = aws_vpc_endpoint_service.k8s_ingress
-}
