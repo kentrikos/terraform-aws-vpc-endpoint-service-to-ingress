@@ -17,3 +17,16 @@ variable "common_tag" {
   type        = map(string)
   description = "Tags to be assigned to each resource (that supports tagging) created by this module"
 }
+
+variable "ingress_namespace" {
+  typ         = string
+  default     = "kube-system"
+  description = "Kubernetes namespace where ingress is located"
+}
+
+variable "ingress_name" {
+  type        = string
+  default     = "nginx-ingress"
+  description = "Kubernetes app name of ingreess"
+
+}

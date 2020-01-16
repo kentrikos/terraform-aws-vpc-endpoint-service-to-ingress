@@ -30,9 +30,10 @@ module "vpc-endpoint-services-nlb" {
 |------|-------------|:----:|:-----:|:-----:|
 | `common_tag` | Tags to be assigned to each resource (that supports tagging) created by this module | map(string) | n/a |  yes |
 | `vpc_id` | The identifier of the VPC for NLB and K8s instances | n/a | n/a |  yes |
+| `ingress_name` | Kubernetes app name of ingreess | string | `nginx-ingress` | no |
+| `ingress_namespace` | Kubernetes namespace where ingress is located | string | `kube-system` | no |
 | `vpces_acceptance_required` | Whether or not VPC endpoint connection requests to the service must be accepted by the service owner | n/a | `"false"` |  no |
 | `vpces_allowed_principals` | The ARNs of one or more principals allowed to discover the endpoint service | list(string) | n/a |  yes |
-
 
 ## Outputs
 
