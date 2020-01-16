@@ -19,7 +19,7 @@ variable "common_tag" {
 }
 
 variable "ingress_namespace" {
-  typ         = string
+  type        = string
   default     = "kube-system"
   description = "Kubernetes namespace where ingress is located"
 }
