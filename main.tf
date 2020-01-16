@@ -3,8 +3,8 @@ data "external" "k8s_nlb" {
   program = ["${path.module}/scripts/get_ingress_hostname.sh"]
 
   query = {
-    namespace = "kube-system"
-    app       = "nginx-ingress"
+    namespace = var.ingress_namespace
+    app       = var.ingress_name
   }
 }
 
